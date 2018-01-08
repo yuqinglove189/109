@@ -91,10 +91,10 @@ function getShoppingLists(shoppingCart){
     var save=0;
     shoppingCart.forEach(function(lists){
         var subtotal=(lists.count-lists.free)*lists.price
-        list=list+'\n'+'名称：'+lists.name+',数量：'+lists.count+lists.unit+',单价：'+lists.price.toFixed(2)+'(元),小计：'+subtotal.toFixed(2)+'(元)'
+        list=list+'\n'+'名称：'+lists.name+'，数量：'+lists.count+lists.unit+'，单价：'+lists.price.toFixed(2)+'(元)，小计：'+subtotal.toFixed(2)+'(元)'
         sum+=subtotal;
         if(lists.free>0){
-            list_free=list_free+'\n'+'名称：'+lists.name+',数量：'+lists.free+lists.unit;
+            list_free=list_free+'\n'+'名称：'+lists.name+'，数量：'+lists.free+lists.unit;
             save+=lists.free*lists.price;
         }
     });
