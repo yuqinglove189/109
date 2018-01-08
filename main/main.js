@@ -73,20 +73,20 @@ function getBarcodeList(inputs){
 }
 function getShoppingCart(barcodeList){
     var items=loadAllItems();
-    var shopping_cart=[];
+    var shoppingCart=[];
     items.forEach(function(item){
         if(barcodeList[item.barcode]){
             item.count=barcodeList[item.barcode];
             item.free=Math.floor(item.count/3);
-            shopping_cart.push(item);
+            shoppingCart.push(item);
         }
     });
 
-    return shopping_cart
+    return shoppingCart
 }
 function getShoppingLists(shoppingCart){
     var list='***<没钱赚商店>购物清单***';
-    var list_free='----------------------'+'\n'+'挥泪赠送商品：';
+    var listFree='----------------------'+'\n'+'挥泪赠送商品：';
     var sum=0;
     var save=0;
     shoppingCart.forEach(function(lists){
@@ -94,10 +94,10 @@ function getShoppingLists(shoppingCart){
         list=list+'\n'+'名称：'+lists.name+'，数量：'+lists.count+lists.unit+'，单价：'+lists.price.toFixed(2)+'(元)，小计：'+subtotal.toFixed(2)+'(元)'
         sum+=subtotal;
         if(lists.free>0){
-            list_free=list_free+'\n'+'名称：'+lists.name+'，数量：'+lists.free+lists.unit;
+            listFree=listFree+'\n'+'名称：'+lists.name+'，数量：'+lists.free+lists.unit;
             save+=lists.free*lists.price;
         }
     });
-    list=list+'\n'+list_free+'\n'+'----------------------'+'\n'+'总计：'+sum.toFixed(2)+'(元)'+'\n'+'节省：'+save.toFixed(2)+'(元)'+'\n'+'**********************';
+    list=list+'\n'+listFree+'\n'+'----------------------'+'\n'+'总计：'+sum.toFixed(2)+'(元)'+'\n'+'节省：'+save.toFixed(2)+'(元)'+'\n'+'**********************';
     return list
 }
